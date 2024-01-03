@@ -1,1 +1,9 @@
-
+server:
+  servlet:
+    context-path: /truegradient
+    
+springdoc:
+  api-docs:
+    path: /api-docs 
+  swagger-ui:
+    operations-sorter: method     
