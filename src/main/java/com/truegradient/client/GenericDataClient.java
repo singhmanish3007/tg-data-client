@@ -19,12 +19,12 @@ public class GenericDataClient {
 	private final WebClient webClient;
 	private static final String SEPARATOR = "/";
 
-	public ResponseEntity<JSONObject> invokePostAPI(String url, JSONObject jsonObject) throws Exception {
+	public ResponseEntity<String> invokePostAPI(String url, String jsonObject) throws Exception {
 		ResponseSpec responseSpec = webClient.post().uri(url).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON).body(BodyInserters.fromValue(jsonObject)).retrieve();
 
 		try {
-			return responseSpec.toEntity(JSONObject.class).toFuture().get();
+			return responseSpec.toEntity(String.class).toFuture().get();
 		} catch (Exception e) {
 			LOGGER.error("exception while calling {}", url, e);
 			throw new RuntimeException("exception while calling " + url, e);

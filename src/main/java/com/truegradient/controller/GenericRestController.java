@@ -1,6 +1,5 @@
 package com.truegradient.controller;
 
-import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -27,11 +26,13 @@ public class GenericRestController {
 	@ResponseStatus(value = HttpStatus.OK)
 
 	@PostMapping(value = "/invoke", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<JSONObject> invokeGenericDataClient(
-			@RequestParam(value = "url", required = true) String targetUrl, @RequestBody JSONObject inputData)
+	public ResponseEntity<String> invokeGenericDataClient(
+			@RequestParam(value = "url", required = true) String targetUrl, @RequestBody String inputData)
 			throws Exception {
 
-		return genericDataClient.invokePostAPI(targetUrl, inputData);
+		ResponseEntity<String> resp = genericDataClient.invokePostAPI(targetUrl, inputData);
+		LOGGER.info("response is {} , {}", resp.getStatusCode(), resp.getBody());
+		return resp;
 
 	}
 
