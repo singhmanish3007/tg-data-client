@@ -6,6 +6,12 @@ target/*
 mvnw
 mvnw.cmd
 
+.classpath
+.factorypath
+.project
+.settings/
+.~lock.pom.xml#
+
 # Log file
 *.log
 
